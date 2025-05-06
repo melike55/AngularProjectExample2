@@ -1,0 +1,82 @@
+<form #saveForm="ngForm" (ngSubmit)="save(saveForm)">
+   <label for="userName">UserName :</label>
+   <input #userNameInput="ngModel"  type="text" name="userName2" [ngModel]="loginModel.userName">
+   <div style="border: 1px solid red;padding:10px">
+      <ul>
+         <li>Valid :{{userNameInput.valid}}</li>
+         <li>Invalid :{{userNameInput.invalid}}</li>
+         <li>Errors :{{userNameInput.errors | json}}</li>
+         <li>Dirty :{{userNameInput.dirty}}</li>
+         <li>Pristine :{{userNameInput.pristine}}</li>
+         <li>Touched :{{userNameInput.touched}}</li>
+         <li>Untouched :{{userNameInput.untouched}}</li>
+         <li>Value :{{userNameInput.value}}</li>
+      </ul>
+   </div>
+
+
+
+
+
+   <br>
+   <label for="password">Password :</label>
+   <input #passwordInput="ngModel" type="password" name="password2" [ngModel]="loginModel.password">
+   <div style="border: 1px solid red;padding:10px">
+      <ul>
+         <li>Valid :{{passwordInput.valid}}</li>
+         <li>Invalid :{{passwordInput.invalid}}</li>
+         <li>Errors :{{passwordInput.errors | json}}</li>
+         <li>Dirty :{{passwordInput.dirty}}</li>
+         <li>Pristine :{{passwordInput.pristine}}</li>
+         <li>Touched :{{passwordInput.touched}}</li>
+         <li>Untouched :{{passwordInput.untouched}}</li>
+         <li>Value :{{passwordInput.value}}</li>
+      </ul>
+   </div>
+
+
+   <br>
+   <label for="rememberMe2">rememberMe :</label>
+   <input type="checkbox" name="rememberMe2" [ngModel]="loginModel.rememberMe">
+   <br>
+   <label for="country2">Ülke :</label>
+   <select (ngModelChange)="countryChange($event)" name="country2" [ngModel]="loginModel.country">
+      <!--buradaki $event keyword u seçili olan option ın value sunu tutar-->
+
+      <option *ngFor="let item of countryMenu" value="{{item.value}}">{{item.text}}</option>
+      <!-- bu şekilde menuyu dinamik bir şekilde doldurduk yani ts'dan değişken atadık dinamik şekilde bu değişkenleri html tarafına girdi-->
+
+
+
+      <!--option value="0">Seçiniz</option>
+      <option value="1">Türkiye</option>
+      <option value="2">Almanya</option>
+      <option value="3">Fransa</option-->
+   </select>
+   <br>
+   <label for="gender2">Cinsiyet :</label>
+   <div *ngFor="let item of genderMenu">
+
+      <input (ngModelChange)="genderChange($event)" [ngModel]="loginModel.gender" type="radio" name="gender"
+         [value]="item.value">{{item.text}}
+
+   </div>
+
+
+   <!-- Manuel Radio Buttons Example-->
+   <!--input [ngModel]="loginModel.gender" type="radio" name="gender" value="1" checked>Erkek
+    <input [ngModel]="loginModel.gender" type="radio" name="gender" value="2">Kadınn-->
+   <br>
+   <button type="submit">Giriş</button>
+
+
+   <!-- Change Event Example -->
+   <!--ngModel kullanmadan bu change işlemlerini eventlarını nasıl yaparız: -->
+   <!--istediğimiz option ın seçtiğimiz option ın özelliklerini f12 de görmek için yukarıdaki select e template değer tanımlarız #select vs diye-->
+   <!-- <select #myselect (change)="onChange(myselect.value)" name="selectManuel" id="">
+      <option value="1">Select 1</option>
+      <option value="2">Select 2</option>
+      <option value="3">Select 3</option>
+    </select> -->
+
+</form>
